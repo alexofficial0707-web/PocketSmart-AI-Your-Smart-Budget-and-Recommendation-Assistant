@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PocketSmart AI</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>💰 PocketSmart AI</h1>
+
+    <div id="authStatus"></div>
+
+</header>
+
+
+<main>
+
+    <!-- LOGIN / REGISTER -->
+
+    <section id="welcome">
+
+        <div class="hero">
+
+            <h2>
+                Smart Budget &
+                Recommendation Assistant
+            </h2>
+
+            <p>
+                Plan your budget intelligently
+                using AI.
+            </p>
+
+        </div>
+
+
+        <div class="auth-container">
+
+            <!-- REGISTER -->
+
+            <div class="box">
+
+                <h2>Create Account</h2>
+
+                <input
+                    id="registerUsername"
+                    placeholder="Username"
+                >
+
+                <input
+                    id="registerEmail"
+                    placeholder="Email"
+                    type="email"
+                >
+
+                <input
+                    id="registerName"
+                    placeholder="Full Name"
+                >
+
+                <input
+                    id="registerPassword"
+                    placeholder="Password"
+                    type="password"
+                >
+
+                <button onclick="registerUser()">
+                    Create Account
+                </button>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <div class="box">
+
+                <h2>Login</h2>
+
+                <input
+                    id="loginUsername"
+                    placeholder="Username"
+                >
+
+                <input
+                    id="loginPassword"
+                    placeholder="Password"
+                    type="password"
+                >
+
+                <button onclick="loginUser()">
+                    Login
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- APPLICATION -->
+
+    <section
+        id="application"
+        class="hidden"
+    >
+
+        <nav>
+
+            <button
+                onclick="showPanel('homePanel')"
+            >
+                🏠 Home Budget
+            </button>
+
+            <button
+                onclick="showPanel('partyPanel')"
+            >
+                🎉 Party Budget
+            </button>
+
+            <button
+                onclick="showPanel('jewelryPanel')"
+            >
+                💎 Jewelry Budget
+            </button>
+
+            <button
+                onclick="showPanel('historyPanel')"
+            >
+                📜 History
+            </button>
+
+            <button
+                onclick="logoutUser()"
+            >
+                Logout
+            </button>
+
+        </nav>
+
+
+        <!-- HOME -->
+
+        <div
+            id="homePanel"
+            class="panel"
+        >
+
+            <h2>
+                🏠 Home Interior Budget Planner
+            </h2>
+
+            <input
+                id="homeBudget"
+                type="number"
+                placeholder="Total Budget ₹"
+            >
+
+            <div class="grid">
+
+                <input
+                    id="homeLights"
+                    type="number"
+                    value="2"
+                    placeholder="Number of Lights"
+                >
+
+                <input
+                    id="homeFans"
+                    type="number"
+                    value="1"
+                    placeholder="Number of Fans"
+                >
+
+                <input
+                    id="homeFurniture"
+                    type="number"
+                    value="2"
+                    placeholder="Furniture"
+                >
+
+                <input
+                    id="homeTables"
+                    type="number"
+                    value="1"
+                    placeholder="Dining Tables"
+                >
+
+            </div>
+
+
+            <label>
+                <input
+                    id="livingRoom"
+                    type="checkbox"
+                    checked
+                >
+                Living Room
+            </label>
+
+
+            <label>
+                <input
+                    id="kitchen"
+                    type="checkbox"
+                    checked
+                >
+                Kitchen
+            </label>
+
+
+            <label>
+                <input
+                    id="bedroom"
+                    type="checkbox"
+                >
+                Bedroom
+            </label>
+
+
+            <textarea
+                id="homeRequirements"
+                placeholder="Additional requirements"
+            ></textarea>
+
+
+            <button onclick="generateHome()">
+                Generate Home Plan
+            </button>
+
+        </div>
+
+
+        <!-- PARTY -->
+
+        <div
+            id="partyPanel"
+            class="panel hidden"
+        >
+
+            <h2>
+                🎉 Party Budget Planner
+            </h2>
+
+            <input
+                id="partyBudget"
+                type="number"
+                placeholder="Total Budget ₹"
+            >
+
+            <input
+                id="partyOccasion"
+                value="Birthday"
+                placeholder="Occasion"
+            >
+
+            <input
+                id="partyGuests"
+                type="number"
+                placeholder="Number of Guests"
+            >
+
+            <input
+                id="partyType"
+                value="Home"
+                placeholder="Party Type"
+            >
+
+            <textarea
+                id="partyNeeds"
+                placeholder="Needs: food, decoration, music..."
+            ></textarea>
+
+
+            <button onclick="generateParty()">
+                Generate Party Plan
+            </button>
+
+        </div>
+
+
+        <!-- JEWELRY -->
+
+        <div
+            id="jewelryPanel"
+            class="panel hidden"
+        >
+
+            <h2>
+                💎 Jewelry Budget Planner
+            </h2>
+
+            <input
+                id="jewelryBudget"
+                type="number"
+                placeholder="Total Budget ₹"
+            >
+
+            <input
+                id="jewelryOccasion"
+                value="Birthday"
+                placeholder="Occasion"
+            >
+
+            <textarea
+                id="jewelryPreferences"
+                placeholder="Jewelry preferences"
+            ></textarea>
+
+
+            <label>
+                Outfit Image
+                <input
+                    id="outfitImage"
+                    type="file"
+                    accept="image/png,image/jpeg,image/webp"
+                >
+            </label>
+
+
+            <button onclick="generateJewelry()">
+                Generate Jewelry Plan
+            </button>
+
+        </div>
+
+
+        <!-- HISTORY -->
+
+        <div
+            id="historyPanel"
+            class="panel hidden"
+        >
+
+            <h2>
+                📜 Recommendation History
+            </h2>
+
+            <button onclick="loadHistory()">
+                Refresh History
+            </button>
+
+            <div id="historyList"></div>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div id="result"></div>
+
+    </section>
+
+</main>
+
+
+<script
+    src="/static/app.js"
+></script>
+
+</body>
+
+</html>
